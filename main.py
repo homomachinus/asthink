@@ -12,6 +12,7 @@ import requests
 import base64
 import json
 import time
+import re
 import io
 import os
 import uuid
@@ -56,7 +57,51 @@ def load_keys():
         with open(p, "r") as f: return json.load(f)
     except: return {}
 
-def get_mistral_key(k): return k.get("mistral",{}).get("api_key","").strip()
+def get_mistral_config(k):
+    c = k.get("mistral",{})
+    keys = []
+    for i in range(1, 8):
+        key = c.get("api_key"+str(i), "").strip()
+        if key: keys.append({"index":i,"key":key})
+    legacy_key = c.get("api_key", "").strip()
+    if legacy_key and not keys:
+        keys.append({"index":1,"key":legacy_key})
+    mode = c.get("usage_mode", "sequential").strip().lower().replace("_", "-")
+    if mode in ["roundrobin", "round-robin"]: mode = "round_robin"
+    elif mode == "sequential": mode = "sequential"
+    else: mode = "invalid"
+    errors = []
+    if len(keys) < 7:
+        errors.append("Mistral needs 7 keys: api_key1 sampai api_key7.")
+    if mode == "invalid":
+        errors.append("mistral.usage_mode harus `sequential` atau `round_robin`.")
+    return {"keys":keys,"usage_mode":mode,"errors":errors}
+
+def get_mistral_key(k):
+    c = get_mistral_config(k)
+    return c["keys"][0]["key"] if c["keys"] else ""
+
+class MistralKeyManager:
+    def __init__(self, config):
+        self.keys = config["keys"]
+        self.mode = config["usage_mode"]
+        if "mistral_key_pos" not in st.session_state:
+            st.session_state.mistral_key_pos = 0
+
+    def ordered_keys(self):
+        if not self.keys: return []
+        start = st.session_state.mistral_key_pos % len(self.keys)
+        if self.mode == "round_robin":
+            st.session_state.mistral_key_pos = (start + 1) % len(self.keys)
+        return self.keys[start:] + self.keys[:start]
+
+    def report_success(self, key_info):
+        if self.mode == "sequential":
+            st.session_state.mistral_key_pos = self.keys.index(key_info)
+
+    def report_failure(self, key_info):
+        if self.mode == "sequential":
+            st.session_state.mistral_key_pos = (self.keys.index(key_info) + 1) % len(self.keys)
 
 def get_router_config(k):
     c = k.get("9router",{})
@@ -147,7 +192,45 @@ def merge_entities(data, source, graph):
     return graph
 
 # ocr functions
-def ocr_image(api_key, img_bytes, filename):
+def call_mistral_ocr(api_key, payload):
+    start = time.time()
+    try:
+        r = requests.post(OCR_ENDPOINT, headers={"Authorization":"Bearer "+api_key,"Content-Type":"application/json"}, json=payload, timeout=120)
+    except Exception as e:
+        return {"success":False,"error":str(e),"text":"","elapsed":0}
+    elapsed = time.time() - start
+    if r.status_code != 200:
+        detail = ""
+        try:
+            detail = r.json().get("message") or r.json().get("error",{}).get("message","")
+        except Exception:
+            detail = r.text[:160]
+        msg = "HTTP "+str(r.status_code)
+        if detail: msg += ": "+detail
+        return {"success":False,"error":msg,"text":"","elapsed":elapsed}
+    try:
+        data = r.json()
+    except Exception as e:
+        return {"success":False,"error":"Invalid JSON response: "+str(e),"text":"","elapsed":elapsed}
+    choices = data.get("choices",[])
+    if not choices:
+        return {"success":False,"error":"No text detected","text":"","elapsed":elapsed}
+    return {"success":True,"text":choices[0].get("message",{}).get("content",""),"elapsed":round(elapsed,2),"usage":data.get("usage",{}),"model":data.get("model",OCR_MODEL)}
+
+def ocr_with_key_manager(key_manager, payload):
+    errors = []
+    for key_info in key_manager.ordered_keys():
+        result = call_mistral_ocr(key_info["key"], payload)
+        result["key_index"] = key_info["index"]
+        if result.get("success"):
+            key_manager.report_success(key_info)
+            if errors: result["fallback_errors"] = errors
+            return result
+        errors.append("api_key"+str(key_info["index"])+": "+result.get("error","Unknown error"))
+        key_manager.report_failure(key_info)
+    return {"success":False,"error":"All Mistral API keys failed: "+" | ".join(errors),"text":"","elapsed":0,"fallback_errors":errors}
+
+def ocr_image(key_manager, img_bytes, filename):
     mime = get_mime(filename)
     b64 = base64.b64encode(img_bytes).decode("utf-8")
     payload = {
@@ -157,21 +240,9 @@ def ocr_image(api_key, img_bytes, filename):
             {"role":"user","content":[{"type":"text","text":"Extract all text from this document."},{"type":"image_url","image_url":"data:"+mime+";base64,"+b64}]}
         ]
     }
-    start = time.time()
-    try:
-        r = requests.post(OCR_ENDPOINT, headers={"Authorization":"Bearer "+api_key,"Content-Type":"application/json"}, json=payload, timeout=120)
-    except Exception as e:
-        return {"success":False,"error":str(e),"text":"","elapsed":0}
-    elapsed = time.time() - start
-    if r.status_code != 200:
-        return {"success":False,"error":"HTTP "+str(r.status_code),"text":"","elapsed":elapsed}
-    data = r.json()
-    choices = data.get("choices",[])
-    if not choices:
-        return {"success":False,"error":"No text detected","text":"","elapsed":elapsed}
-    return {"success":True,"text":choices[0].get("message",{}).get("content",""),"elapsed":round(elapsed,2),"usage":data.get("usage",{}),"model":data.get("model",OCR_MODEL)}
+    return ocr_with_key_manager(key_manager, payload)
 
-def ocr_from_url(api_key, url):
+def ocr_from_url(key_manager, url):
     payload = {
         "model": OCR_MODEL, "max_tokens": MAX_TOKENS,
         "messages": [
@@ -179,19 +250,7 @@ def ocr_from_url(api_key, url):
             {"role":"user","content":[{"type":"text","text":"Extract all text from this document."},{"type":"image_url","image_url":url}]}
         ]
     }
-    start = time.time()
-    try:
-        r = requests.post(OCR_ENDPOINT, headers={"Authorization":"Bearer "+api_key,"Content-Type":"application/json"}, json=payload, timeout=120)
-    except Exception as e:
-        return {"success":False,"error":str(e),"text":"","elapsed":0}
-    elapsed = time.time() - start
-    if r.status_code != 200:
-        return {"success":False,"error":"HTTP "+str(r.status_code),"text":"","elapsed":elapsed}
-    data = r.json()
-    choices = data.get("choices",[])
-    if not choices:
-        return {"success":False,"error":"No text detected","text":"","elapsed":elapsed}
-    return {"success":True,"text":choices[0].get("message",{}).get("content",""),"elapsed":round(elapsed,2),"usage":data.get("usage",{}),"model":data.get("model",OCR_MODEL)}
+    return ocr_with_key_manager(key_manager, payload)
 
 def extract_pdf_text(pdf_bytes):
     try:
@@ -361,32 +420,12 @@ def build_graph_html(graph, height=650):
         encoded_prompt = requests.utils.quote(prompt, safe="")
         chatgpt_url = "https://chatgpt.com/?ask=" + encoded_prompt
         
-        # bangun tooltip HTML
-        # [Ask ChatGPT] link di paling awal
-        title = '<a href="' + chatgpt_url + '" target="_blank" style="color:#667eea;text-decoration:underline;font-weight:bold;">[Ask ChatGPT]</a>'
-        title += '<br><br><b>' + label + '</b>'
-        title += '<br><i>Type: ' + ntype + '</i>'
-        
-        # full description (no truncation)
+        # tooltip: hanya judul dan deskripsi
+        title = '<b>' + label + '</b>'
         if desc:
-            title += '<br><br><b>Description:</b><br>' + desc
+            title += '<br><br>' + desc
         
-        # parent topic
-        if parent:
-            title += '<br><br><b>Parent Topic:</b> ' + parent
-        
-        # connected nodes
-        if connected_info:
-            title += '<br><br><b>Related Topics:</b>'
-            for ci in connected_info:
-                title += '<br>- <b>' + ci["label"] + '</b> [' + ci["relation"] + ']'
-                if ci["description"]:
-                    title += ': ' + ci["description"]
-        
-        # sources
-        if sources:
-            title += '<br><br><b>Sources:</b> ' + ", ".join(sources)
-        
+        node["_chatgpt_url"] = chatgpt_url
         net.add_node(nid, label=label, title=title, color=st["color"], size=st["size"], shape=st["shape"], font={"size":14 if ntype=="main_topic" else 11})
     
     # buat edges
@@ -401,15 +440,97 @@ def build_graph_html(graph, height=650):
     net.set_options('{"physics":{"barnesHut":{"gravitationalConstant":-3000,"centralGravity":0.3,"springLength":150,"springConstant":0.05,"damping":0.09},"minVelocity":0.75},"interaction":{"hover":true,"tooltipDelay":200,"navigationButtons":true,"keyboard":true}}')
     
     html = net.generate_html()
+    
+    # inject custom tooltip dengan tombol delete node
+    node_info = {}
+    for nid, node in nodes.items():
+        t = node.get("label", nid)
+        d = node.get("description", "No description")
+        if d: d = d.replace('"', '&quot;').replace("'", "&#39;").replace("\n", "<br>")
+        node_info[nid] = {"t": t, "d": d, "u": node.get("_chatgpt_url", "")}
+    node_info_js = json.dumps(node_info)
+
+    custom_js = """
+    <div id="custom-tooltip" style="display:none;position:fixed;z-index:10000;background:#1e1e2e;color:#cdd6f4;border:1px solid #585b70;border-radius:8px;padding:12px 16px;max-width:320px;box-shadow:0 4px 16px rgba(0,0,0,0.4);font-family:system-ui,-apple-system,sans-serif;font-size:13px;pointer-events:auto;">
+      <div id="ct-title" style="font-weight:700;font-size:14px;color:#cba6f7;margin-bottom:6px;"></div>
+      <div id="ct-desc" style="color:#a6adc8;line-height:1.5;margin-bottom:10px;"></div>
+      <button id="ct-chatgpt" style="background:#ffffff;color:#000000;border:1px solid #000000;border-radius:5px;padding:6px 14px;cursor:pointer;font-weight:700;font-size:12px;width:100%;margin-bottom:8px;">Ask ChatGPT</button>
+      <button id="ct-delete" style="background:#f38ba8;color:#1e1e2e;border:none;border-radius:5px;padding:6px 14px;cursor:pointer;font-weight:600;font-size:12px;width:100%;">[Delete Node]</button>
+    </div>
+    <script>
+    (function() {
+      var NI = """ + node_info_js + """;
+      var tt = document.getElementById('custom-tooltip');
+      var ttTitle = document.getElementById('ct-title');
+      var ttDesc = document.getElementById('ct-desc');
+      var ttChatGPT = document.getElementById('ct-chatgpt');
+      var ttDel = document.getElementById('ct-delete');
+      var activeId = null;
+      var activeUrl = '';
+
+      network.on('click', function(p) {
+        var ids = p.nodes;
+        if (ids && ids.length > 0) {
+          var nid = ids[0];
+          var info = NI[nid];
+          if (info) {
+            activeId = nid;
+            activeUrl = info.u || '';
+            ttTitle.textContent = info.t;
+            ttDesc.innerHTML = info.d;
+            ttChatGPT.style.display = activeUrl ? 'block' : 'none';
+            var ne = document.getElementById(nid);
+            if (ne) {
+              var r = ne.getBoundingClientRect();
+              tt.style.left = Math.min(r.right + 10, window.innerWidth - 340) + 'px';
+              tt.style.top = Math.max(r.top - 10, 5) + 'px';
+            } else {
+              tt.style.left = (p.pointer.DOM.x + 15) + 'px';
+              tt.style.top = (p.pointer.DOM.y - 10) + 'px';
+            }
+            tt.style.display = 'block';
+          }
+        } else {
+          tt.style.display = 'none';
+          activeId = null;
+          activeUrl = '';
+        }
+      });
+
+      ttChatGPT.addEventListener('click', function(ev) {
+        ev.stopPropagation();
+        if (activeUrl) {
+          window.open(activeUrl, '_blank', 'noopener,noreferrer');
+        }
+      });
+
+      ttDel.addEventListener('click', function(ev) {
+        ev.stopPropagation();
+        if (activeId) {
+          window.parent.postMessage({type:'streamlit:setComponentValue', value:activeId}, '*');
+          tt.style.display = 'none';
+          activeId = null;
+          activeUrl = '';
+        }
+      });
+
+      tt.addEventListener('click', function(ev) { ev.stopPropagation(); });
+    })();
+    </script>
+    """
+    html = html.replace("</body>", custom_js + "</body>")
     return html
 
 # sidebar
 def render_sidebar(keys):
     with st.sidebar:
         st.markdown("### Status")
-        mk = get_mistral_key(keys)
-        if mk: st.success("Mistral OCR: Connected")
-        else: st.error("Mistral OCR: No key")
+        mc = get_mistral_config(keys)
+        if mc["errors"]:
+            st.error("Mistral OCR: Config error")
+            for err in mc["errors"]: st.caption(err)
+        else:
+            st.success("Mistral OCR: "+str(len(mc["keys"]))+" keys, "+mc["usage_mode"].replace("_"," "))
         
         rc = get_router_config(keys)
         if rc["base_url"]: st.success("9Router: "+rc["base_url"])
@@ -457,25 +578,39 @@ def main():
     st.markdown('<p class="sub-header">Upload &rarr; OCR &rarr; Knowledge Graph</p>', unsafe_allow_html=True)
     
     keys = load_keys()
-    mk = get_mistral_key(keys)
+    mc = get_mistral_config(keys)
     rc = get_router_config(keys)
     rm = render_sidebar(keys)
     
-    if not mk:
-        st.error("Mistral API key belum ada. Tambahin di `"+KEY_FILE+"`")
+    if mc["errors"]:
+        st.error("Config Mistral belum valid di `"+KEY_FILE+"`")
+        for err in mc["errors"]: st.error(err)
+        st.code('''{
+  "mistral": {
+    "api_key1": "your-mistral-api-key-1",
+    "api_key2": "your-mistral-api-key-2",
+    "api_key3": "your-mistral-api-key-3",
+    "api_key4": "your-mistral-api-key-4",
+    "api_key5": "your-mistral-api-key-5",
+    "api_key6": "your-mistral-api-key-6",
+    "api_key7": "your-mistral-api-key-7",
+    "usage_mode": "sequential"
+  }
+}''', language="json")
         return
+    key_manager = MistralKeyManager(mc)
     
     # tabs
     tab_ingest, tab_graph = st.tabs(["Ingest", "Knowledge Graph"])
     
     with tab_ingest:
-        render_ingest_tab(mk, rc, rm)
+        render_ingest_tab(key_manager, rc, rm)
     
     with tab_graph:
         render_graph_tab()
 
 # ingest tab
-def render_ingest_tab(mistral_key, router_cfg, router_model):
+def render_ingest_tab(mistral_key_manager, router_cfg, router_model):
     st.markdown("### Upload Documents")
     
     tab_file, tab_url, tab_paste = st.tabs(["Upload Files", "Image URL", "Paste Text"])
@@ -520,7 +655,7 @@ def render_ingest_tab(mistral_key, router_cfg, router_model):
         ocr_results.append({"success":True,"text":paste_text.strip(),"source":"Pasted Notes","method":"direct_input","elapsed":0,"usage":{},"model":"N/A"})
     elif source_type == "url":
         with st.spinner("Extracting text from URL..."):
-            r = ocr_from_url(mistral_key, url_input)
+            r = ocr_from_url(mistral_key_manager, url_input)
             r["source"] = url_input
             r["method"] = "url_ocr"
             ocr_results.append(r)
@@ -547,7 +682,7 @@ def render_ingest_tab(mistral_key, router_cfg, router_model):
                         tt = 0
                         for pi, pg in enumerate(pages):
                             with st.spinner("OCR page "+str(pi+1)+"/"+str(len(pages))):
-                                pr = ocr_image(mistral_key, pg, "page_"+str(pi+1)+".png")
+                                pr = ocr_image(mistral_key_manager, pg, "page_"+str(pi+1)+".png")
                             if pr["success"]:
                                 combined.append(pr["text"])
                                 for k in tu: tu[k] += pr.get("usage",{}).get(k,0)
@@ -555,7 +690,7 @@ def render_ingest_tab(mistral_key, router_cfg, router_model):
                         ocr_results.append({"success":len(combined)>0,"text":"\n\n--- Page Break ---\n\n".join(combined),"source":uf.name,"method":"pdf_ocr","elapsed":round(tt,2),"usage":tu,"model":OCR_MODEL})
             else:
                 with st.spinner("OCR on "+uf.name+"..."):
-                    r = ocr_image(mistral_key, raw, uf.name)
+                    r = ocr_image(mistral_key_manager, raw, uf.name)
                     r["source"] = uf.name
                     r["method"] = "image_ocr"
                     ocr_results.append(r)
@@ -707,7 +842,46 @@ def build_chatgpt_prompt(node, nodes, edges):
     
     return prompt
 
+def handle_node_deletion(nid):
+    graph = load_graph()
+    nodes = graph.get("nodes", {})
+    edges = graph.get("edges", [])
+    
+    # collect node + all subnodes recursively
+    to_delete = set()
+    queue = [nid]
+    while queue:
+        current = queue.pop(0)
+        if current in to_delete:
+            continue
+        to_delete.add(current)
+        # find children (nodes whose parent_topic matches this node's label)
+        current_label = nodes.get(current, {}).get("label", "")
+        for cid, cnode in nodes.items():
+            if cid not in to_delete and cnode.get("parent_topic") == current_label:
+                queue.append(cid)
+    
+    # remove nodes
+    for did in to_delete:
+        nodes.pop(did, None)
+    
+    # remove edges connected to any deleted node
+    edges = [e for e in edges if e.get("source") not in to_delete and e.get("target") not in to_delete]
+    
+    graph["nodes"] = nodes
+    graph["edges"] = edges
+    save_graph(graph)
+    return len(to_delete)
+
+
 def render_graph_tab():
+    # handle node deletion from graph visualization
+    if st.session_state.get("_delete_node_request"):
+        nid = st.session_state.pop("_delete_node_request")
+        count = handle_node_deletion(nid)
+        st.success(f"Deleted {count} node(s) and their connections.")
+        st.rerun()
+    
     graph = load_graph()
     nodes = graph.get("nodes",{})
     edges = graph.get("edges",[])
@@ -795,3 +969,6 @@ def render_graph_tab():
 
 if __name__ == "__main__":
     main()
+
+
+

@@ -1,0 +1,7 @@
+key.json
+__pycache__/
+*.pyc
+output/
+uploads/
+*.egg-info/
+.env

@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Second Brain - ChatGPT Prompt Injector",
+  "version": "1.0.0",
+  "description": "Injects prompts from Second Brain knowledge graph into ChatGPT",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,943 @@
+{
+  "nodes": {
+    "great_work": {
+      "id": "great_work",
+      "label": "Great Work",
+      "type": "main_topic",
+      "description": "The concept of achieving exceptional results through focused effort and consistency.",
+      "parent_topic": "",
+      "sources": [
+        "GQNtamkWQAALpFn.jpg",
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T12:58:01.834694",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "productivity": {
+      "id": "productivity",
+      "label": "Productivity",
+      "type": "main_topic",
+      "description": "The principles and practices related to efficient and effective work output.",
+      "parent_topic": "",
+      "sources": [
+        "GQNtamkWQAALpFn.jpg"
+      ],
+      "created_at": "2026-06-14T12:58:01.834694",
+      "updated_at": "2026-06-14T12:58:01.834694"
+    },
+    "time_management": {
+      "id": "time_management",
+      "label": "Time Management",
+      "type": "subtopic",
+      "description": "The process of organizing and planning how to divide time between different activities.",
+      "parent_topic": "Productivity",
+      "sources": [
+        "GQNtamkWQAALpFn.jpg"
+      ],
+      "created_at": "2026-06-14T12:58:01.834694",
+      "updated_at": "2026-06-14T12:58:01.834694"
+    },
+    "consistency": {
+      "id": "consistency",
+      "label": "Consistency",
+      "type": "subtopic",
+      "description": "The principle of maintaining steady effort over time to achieve long-term results.",
+      "parent_topic": "Great Work",
+      "sources": [
+        "GQNtamkWQAALpFn.jpg",
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T12:58:01.834694",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "engagement": {
+      "id": "engagement",
+      "label": "Engagement",
+      "type": "subtopic",
+      "description": "The state of being mentally and emotionally involved in one's work.",
+      "parent_topic": "Great Work",
+      "sources": [
+        "GQNtamkWQAALpFn.jpg"
+      ],
+      "created_at": "2026-06-14T12:58:01.834694",
+      "updated_at": "2026-06-14T12:58:01.834694"
+    },
+    "time": {
+      "id": "time",
+      "label": "Time",
+      "type": "entity",
+      "description": "A measurable period during which an action, process, or condition exists or continues.",
+      "parent_topic": "Time Management",
+      "sources": [
+        "GQNtamkWQAALpFn.jpg"
+      ],
+      "created_at": "2026-06-14T12:58:01.834694",
+      "updated_at": "2026-06-14T12:58:01.834694"
+    },
+    "cost": {
+      "id": "cost",
+      "label": "Cost",
+      "type": "entity",
+      "description": "A perceived expenditure or sacrifice, often in terms of time or effort.",
+      "parent_topic": "Productivity",
+      "sources": [
+        "GQNtamkWQAALpFn.jpg"
+      ],
+      "created_at": "2026-06-14T12:58:01.834694",
+      "updated_at": "2026-06-14T12:58:01.834694"
+    },
+    "cumulative_effect": {
+      "id": "cumulative_effect",
+      "label": "Cumulative Effect",
+      "type": "entity",
+      "description": "The principle that small, repeated actions over time lead to significant results.",
+      "parent_topic": "Great Work",
+      "sources": [
+        "GQNtamkWQAALpFn.jpg",
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T12:58:01.834694",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "writing_a_page_a_day": {
+      "id": "writing_a_page_a_day",
+      "label": "Writing a Page a Day",
+      "type": "entity",
+      "description": "An example of a small, consistent action that leads to significant output over time.",
+      "parent_topic": "Productivity",
+      "sources": [
+        "GQNtamkWQAALpFn.jpg"
+      ],
+      "created_at": "2026-06-14T12:58:01.834694",
+      "updated_at": "2026-06-14T12:58:01.834694"
+    },
+    "book_a_year": {
+      "id": "book_a_year",
+      "label": "Book a Year",
+      "type": "entity",
+      "description": "The result of writing a page a day for a year.",
+      "parent_topic": "Productivity",
+      "sources": [
+        "GQNtamkWQAALpFn.jpg"
+      ],
+      "created_at": "2026-06-14T12:58:01.834694",
+      "updated_at": "2026-06-14T12:58:01.834694"
+    },
+    "writing": {
+      "id": "writing",
+      "label": "writing",
+      "type": "tag",
+      "description": "",
+      "parent_topic": "",
+      "sources": [
+        "GQNtamkWQAALpFn.jpg"
+      ],
+      "created_at": "2026-06-14T12:58:01.834694",
+      "updated_at": "2026-06-14T12:58:01.834694"
+    },
+    "long-term_results": {
+      "id": "long-term_results",
+      "label": "long-term results",
+      "type": "tag",
+      "description": "",
+      "parent_topic": "",
+      "sources": [
+        "GQNtamkWQAALpFn.jpg"
+      ],
+      "created_at": "2026-06-14T12:58:01.834694",
+      "updated_at": "2026-06-14T12:58:01.834694"
+    },
+    "remote_sensing": {
+      "id": "remote_sensing",
+      "label": "Remote Sensing",
+      "type": "main_topic",
+      "description": "The science of obtaining information about objects or areas from a distance, typically from aircraft or satellites.",
+      "parent_topic": "",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "urban_planning": {
+      "id": "urban_planning",
+      "label": "Urban Planning",
+      "type": "main_topic",
+      "description": "The technical and political process concerned with the development and design of land use and the built environment.",
+      "parent_topic": "",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "digital_image_processing": {
+      "id": "digital_image_processing",
+      "label": "Digital Image Processing",
+      "type": "main_topic",
+      "description": "The use of computer algorithms to perform image processing on digital images.",
+      "parent_topic": "",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "road_extraction": {
+      "id": "road_extraction",
+      "label": "Road Extraction",
+      "type": "subtopic",
+      "description": "The process of identifying and delineating road networks from satellite or aerial imagery.",
+      "parent_topic": "Remote Sensing",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "satellite_imagery_analysis": {
+      "id": "satellite_imagery_analysis",
+      "label": "Satellite Imagery Analysis",
+      "type": "subtopic",
+      "description": "The examination and interpretation of data collected by satellites.",
+      "parent_topic": "Remote Sensing",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "change_detection": {
+      "id": "change_detection",
+      "label": "Change Detection",
+      "type": "subtopic",
+      "description": "The process of identifying differences in the state of an object or phenomenon by observing it at different times.",
+      "parent_topic": "Remote Sensing",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "urban_development": {
+      "id": "urban_development",
+      "label": "Urban Development",
+      "type": "subtopic",
+      "description": "The process of designing and shaping the physical and social environment of cities.",
+      "parent_topic": "Urban Planning",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "geospatial_data": {
+      "id": "geospatial_data",
+      "label": "Geospatial Data",
+      "type": "subtopic",
+      "description": "Data that have a geographic component and can be mapped.",
+      "parent_topic": "Digital Image Processing",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "aikaterini_karagianni": {
+      "id": "aikaterini_karagianni",
+      "label": "Aikaterini Karagianni",
+      "type": "entity",
+      "description": "Corresponding author of the study, researcher at Aristotle University of Thessaloniki.",
+      "parent_topic": "Remote Sensing",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "international_journal_of_engineering_and_geosciences": {
+      "id": "international_journal_of_engineering_and_geosciences",
+      "label": "International Journal of Engineering and Geosciences",
+      "type": "entity",
+      "description": "Academic journal publishing the research article.",
+      "parent_topic": "Remote Sensing",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "aristotle_university_of_thessaloniki": {
+      "id": "aristotle_university_of_thessaloniki",
+      "label": "Aristotle University of Thessaloniki",
+      "type": "entity",
+      "description": "University where the research was conducted.",
+      "parent_topic": "Remote Sensing",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "landsat_5": {
+      "id": "landsat_5",
+      "label": "Landsat 5",
+      "type": "entity",
+      "description": "Satellite launched in 1984, decommissioned in 2013, used for change detection in the study.",
+      "parent_topic": "Satellite Imagery Analysis",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "landsat_8": {
+      "id": "landsat_8",
+      "label": "Landsat 8",
+      "type": "entity",
+      "description": "Satellite launched in 2013, used for detecting linear features through spatial enhancement.",
+      "parent_topic": "Satellite Imagery Analysis",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "spotmaps": {
+      "id": "spotmaps",
+      "label": "SPOTmaps",
+      "type": "entity",
+      "description": "Orthorectified satellite imagery products derived from SPOT 5 images, used for semi-automatic road extraction.",
+      "parent_topic": "Satellite Imagery Analysis",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "quickbird": {
+      "id": "quickbird",
+      "label": "QuickBird",
+      "type": "entity",
+      "description": "High-resolution commercial Earth observation satellite, used for object-oriented road extraction.",
+      "parent_topic": "Satellite Imagery Analysis",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "u.s._geological_survey_(usgs)": {
+      "id": "u.s._geological_survey_(usgs)",
+      "label": "U.S. Geological Survey (USGS)",
+      "type": "entity",
+      "description": "Agency providing free satellite imagery data.",
+      "parent_topic": "Satellite Imagery Analysis",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "digitalglobe": {
+      "id": "digitalglobe",
+      "label": "DigitalGlobe",
+      "type": "entity",
+      "description": "Company providing high-resolution satellite imagery.",
+      "parent_topic": "Satellite Imagery Analysis",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "kastoria": {
+      "id": "kastoria",
+      "label": "Kastoria",
+      "type": "entity",
+      "description": "City in northwestern Greece studied for its road network and cultural heritage.",
+      "parent_topic": "Urban Planning",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "lake_orestiada": {
+      "id": "lake_orestiada",
+      "label": "Lake Orestiada",
+      "type": "entity",
+      "description": "Lake surrounding Kastoria city, part of the Natura 2000 network.",
+      "parent_topic": "Urban Planning",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "natura_2000": {
+      "id": "natura_2000",
+      "label": "Natura 2000",
+      "type": "entity",
+      "description": "Network of protected areas in the European Union.",
+      "parent_topic": "Urban Planning",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "byzantine_justinian_walls": {
+      "id": "byzantine_justinian_walls",
+      "label": "Byzantine Justinian walls",
+      "type": "entity",
+      "description": "Historical walls in Kastoria city.",
+      "parent_topic": "Urban Planning",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "digital_processing": {
+      "id": "digital_processing",
+      "label": "Digital processing",
+      "type": "entity",
+      "description": "Methods applied to satellite images to enhance and extract features.",
+      "parent_topic": "Digital Image Processing",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "visual_interpretation": {
+      "id": "visual_interpretation",
+      "label": "Visual interpretation",
+      "type": "entity",
+      "description": "Manual analysis of satellite images to identify features.",
+      "parent_topic": "Digital Image Processing",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "semi-automatic_techniques": {
+      "id": "semi-automatic_techniques",
+      "label": "Semi-automatic techniques",
+      "type": "entity",
+      "description": "Methods combining automation with human input for feature extraction.",
+      "parent_topic": "Digital Image Processing",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "object-oriented_approach": {
+      "id": "object-oriented_approach",
+      "label": "Object-oriented approach",
+      "type": "entity",
+      "description": "Methodology that groups pixels into meaningful objects for analysis.",
+      "parent_topic": "Digital Image Processing",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "convolutional_neural_network_(cnn)": {
+      "id": "convolutional_neural_network_(cnn)",
+      "label": "Convolutional Neural Network (CNN)",
+      "type": "entity",
+      "description": "Deep learning technique used for road network extraction.",
+      "parent_topic": "Digital Image Processing",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "satellite_imagery": {
+      "id": "satellite_imagery",
+      "label": "satellite imagery",
+      "type": "tag",
+      "description": "",
+      "parent_topic": "",
+      "sources": [
+        "10.26833-ijeg.977032-1902027.pdf"
+      ],
+      "created_at": "2026-06-14T13:01:24.725561",
+      "updated_at": "2026-06-14T13:01:24.725561"
+    }
+  },
+  "edges": [
+    {
+      "key": "productivity->time_management:subtopic_of",
+      "source": "productivity",
+      "target": "time_management",
+      "relation": "subtopic_of",
+      "context": "Time Management is subtopic of Productivity"
+    },
+    {
+      "key": "great_work->consistency:subtopic_of",
+      "source": "great_work",
+      "target": "consistency",
+      "relation": "subtopic_of",
+      "context": "Consistency is subtopic of Great Work"
+    },
+    {
+      "key": "great_work->engagement:subtopic_of",
+      "source": "great_work",
+      "target": "engagement",
+      "relation": "subtopic_of",
+      "context": "Engagement is subtopic of Great Work"
+    },
+    {
+      "key": "great_work->great_work:contains",
+      "source": "great_work",
+      "target": "great_work",
+      "relation": "contains",
+      "context": "Great Work contains Great Work"
+    },
+    {
+      "key": "time_management->time:contains",
+      "source": "time_management",
+      "target": "time",
+      "relation": "contains",
+      "context": "Time Management contains Time"
+    },
+    {
+      "key": "productivity->cost:contains",
+      "source": "productivity",
+      "target": "cost",
+      "relation": "contains",
+      "context": "Productivity contains Cost"
+    },
+    {
+      "key": "engagement->engagement:contains",
+      "source": "engagement",
+      "target": "engagement",
+      "relation": "contains",
+      "context": "Engagement contains Engagement"
+    },
+    {
+      "key": "consistency->consistency:contains",
+      "source": "consistency",
+      "target": "consistency",
+      "relation": "contains",
+      "context": "Consistency contains Consistency"
+    },
+    {
+      "key": "great_work->cumulative_effect:contains",
+      "source": "great_work",
+      "target": "cumulative_effect",
+      "relation": "contains",
+      "context": "Great Work contains Cumulative Effect"
+    },
+    {
+      "key": "productivity->writing_a_page_a_day:contains",
+      "source": "productivity",
+      "target": "writing_a_page_a_day",
+      "relation": "contains",
+      "context": "Productivity contains Writing a Page a Day"
+    },
+    {
+      "key": "productivity->book_a_year:contains",
+      "source": "productivity",
+      "target": "book_a_year",
+      "relation": "contains",
+      "context": "Productivity contains Book a Year"
+    },
+    {
+      "key": "great_work->time:requires",
+      "source": "great_work",
+      "target": "time",
+      "relation": "requires",
+      "context": "Great work requires spending significant time on a problem."
+    },
+    {
+      "key": "great_work->cost:influences",
+      "source": "great_work",
+      "target": "cost",
+      "relation": "influences",
+      "context": "Perceiving time as a cost can negatively influence the pursuit of great work."
+    },
+    {
+      "key": "great_work->engagement:requires",
+      "source": "great_work",
+      "target": "engagement",
+      "relation": "requires",
+      "context": "Great work requires finding the work sufficiently engaging."
+    },
+    {
+      "key": "great_work->consistency:Great work happens through consistent focus on something genuinely interesting.",
+      "source": "great_work",
+      "target": "consistency",
+      "relation": "Great work happens through consistent focus on something genuinely interesting.",
+      "context": ""
+    },
+    {
+      "key": "consistency->cumulative_effect:enables",
+      "source": "consistency",
+      "target": "cumulative_effect",
+      "relation": "enables",
+      "context": "Consistency enables the cumulative effect of work over time."
+    },
+    {
+      "key": "writing_a_page_a_day->book_a_year:leads_to",
+      "source": "writing_a_page_a_day",
+      "target": "book_a_year",
+      "relation": "leads_to",
+      "context": "Writing a page a day consistently leads to writing a book in a year."
+    },
+    {
+      "key": "cumulative_effect->book_a_year:results_in",
+      "source": "cumulative_effect",
+      "target": "book_a_year",
+      "relation": "results_in",
+      "context": "The cumulative effect of small daily actions results in significant output like a book a year."
+    },
+    {
+      "key": "remote_sensing->road_extraction:subtopic_of",
+      "source": "remote_sensing",
+      "target": "road_extraction",
+      "relation": "subtopic_of",
+      "context": "Road Extraction is subtopic of Remote Sensing"
+    },
+    {
+      "key": "remote_sensing->satellite_imagery_analysis:subtopic_of",
+      "source": "remote_sensing",
+      "target": "satellite_imagery_analysis",
+      "relation": "subtopic_of",
+      "context": "Satellite Imagery Analysis is subtopic of Remote Sensing"
+    },
+    {
+      "key": "remote_sensing->change_detection:subtopic_of",
+      "source": "remote_sensing",
+      "target": "change_detection",
+      "relation": "subtopic_of",
+      "context": "Change Detection is subtopic of Remote Sensing"
+    },
+    {
+      "key": "urban_planning->urban_development:subtopic_of",
+      "source": "urban_planning",
+      "target": "urban_development",
+      "relation": "subtopic_of",
+      "context": "Urban Development is subtopic of Urban Planning"
+    },
+    {
+      "key": "digital_image_processing->geospatial_data:subtopic_of",
+      "source": "digital_image_processing",
+      "target": "geospatial_data",
+      "relation": "subtopic_of",
+      "context": "Geospatial Data is subtopic of Digital Image Processing"
+    },
+    {
+      "key": "remote_sensing->aikaterini_karagianni:contains",
+      "source": "remote_sensing",
+      "target": "aikaterini_karagianni",
+      "relation": "contains",
+      "context": "Remote Sensing contains Aikaterini Karagianni"
+    },
+    {
+      "key": "remote_sensing->international_journal_of_engineering_and_geosciences:contains",
+      "source": "remote_sensing",
+      "target": "international_journal_of_engineering_and_geosciences",
+      "relation": "contains",
+      "context": "Remote Sensing contains International Journal of Engineering and Geosciences"
+    },
+    {
+      "key": "remote_sensing->aristotle_university_of_thessaloniki:contains",
+      "source": "remote_sensing",
+      "target": "aristotle_university_of_thessaloniki",
+      "relation": "contains",
+      "context": "Remote Sensing contains Aristotle University of Thessaloniki"
+    },
+    {
+      "key": "satellite_imagery_analysis->landsat_5:contains",
+      "source": "satellite_imagery_analysis",
+      "target": "landsat_5",
+      "relation": "contains",
+      "context": "Satellite Imagery Analysis contains Landsat 5"
+    },
+    {
+      "key": "satellite_imagery_analysis->landsat_8:contains",
+      "source": "satellite_imagery_analysis",
+      "target": "landsat_8",
+      "relation": "contains",
+      "context": "Satellite Imagery Analysis contains Landsat 8"
+    },
+    {
+      "key": "satellite_imagery_analysis->spotmaps:contains",
+      "source": "satellite_imagery_analysis",
+      "target": "spotmaps",
+      "relation": "contains",
+      "context": "Satellite Imagery Analysis contains SPOTmaps"
+    },
+    {
+      "key": "satellite_imagery_analysis->quickbird:contains",
+      "source": "satellite_imagery_analysis",
+      "target": "quickbird",
+      "relation": "contains",
+      "context": "Satellite Imagery Analysis contains QuickBird"
+    },
+    {
+      "key": "satellite_imagery_analysis->u.s._geological_survey_(usgs):contains",
+      "source": "satellite_imagery_analysis",
+      "target": "u.s._geological_survey_(usgs)",
+      "relation": "contains",
+      "context": "Satellite Imagery Analysis contains U.S. Geological Survey (USGS)"
+    },
+    {
+      "key": "satellite_imagery_analysis->digitalglobe:contains",
+      "source": "satellite_imagery_analysis",
+      "target": "digitalglobe",
+      "relation": "contains",
+      "context": "Satellite Imagery Analysis contains DigitalGlobe"
+    },
+    {
+      "key": "urban_planning->kastoria:contains",
+      "source": "urban_planning",
+      "target": "kastoria",
+      "relation": "contains",
+      "context": "Urban Planning contains Kastoria"
+    },
+    {
+      "key": "urban_planning->lake_orestiada:contains",
+      "source": "urban_planning",
+      "target": "lake_orestiada",
+      "relation": "contains",
+      "context": "Urban Planning contains Lake Orestiada"
+    },
+    {
+      "key": "urban_planning->natura_2000:contains",
+      "source": "urban_planning",
+      "target": "natura_2000",
+      "relation": "contains",
+      "context": "Urban Planning contains Natura 2000"
+    },
+    {
+      "key": "urban_planning->byzantine_justinian_walls:contains",
+      "source": "urban_planning",
+      "target": "byzantine_justinian_walls",
+      "relation": "contains",
+      "context": "Urban Planning contains Byzantine Justinian walls"
+    },
+    {
+      "key": "remote_sensing->remote_sensing:contains",
+      "source": "remote_sensing",
+      "target": "remote_sensing",
+      "relation": "contains",
+      "context": "Remote Sensing contains Remote sensing"
+    },
+    {
+      "key": "digital_image_processing->digital_processing:contains",
+      "source": "digital_image_processing",
+      "target": "digital_processing",
+      "relation": "contains",
+      "context": "Digital Image Processing contains Digital processing"
+    },
+    {
+      "key": "digital_image_processing->visual_interpretation:contains",
+      "source": "digital_image_processing",
+      "target": "visual_interpretation",
+      "relation": "contains",
+      "context": "Digital Image Processing contains Visual interpretation"
+    },
+    {
+      "key": "digital_image_processing->semi-automatic_techniques:contains",
+      "source": "digital_image_processing",
+      "target": "semi-automatic_techniques",
+      "relation": "contains",
+      "context": "Digital Image Processing contains Semi-automatic techniques"
+    },
+    {
+      "key": "digital_image_processing->object-oriented_approach:contains",
+      "source": "digital_image_processing",
+      "target": "object-oriented_approach",
+      "relation": "contains",
+      "context": "Digital Image Processing contains Object-oriented approach"
+    },
+    {
+      "key": "digital_image_processing->convolutional_neural_network_(cnn):contains",
+      "source": "digital_image_processing",
+      "target": "convolutional_neural_network_(cnn)",
+      "relation": "contains",
+      "context": "Digital Image Processing contains Convolutional Neural Network (CNN)"
+    },
+    {
+      "key": "remote_sensing->change_detection:contains",
+      "source": "remote_sensing",
+      "target": "change_detection",
+      "relation": "contains",
+      "context": "Remote Sensing contains Change detection"
+    },
+    {
+      "key": "remote_sensing->great_work:contains",
+      "source": "remote_sensing",
+      "target": "great_work",
+      "relation": "contains",
+      "context": "Remote Sensing contains Great Work"
+    },
+    {
+      "key": "remote_sensing->consistency:contains",
+      "source": "remote_sensing",
+      "target": "consistency",
+      "relation": "contains",
+      "context": "Remote Sensing contains Consistency"
+    },
+    {
+      "key": "remote_sensing->cumulative_effect:contains",
+      "source": "remote_sensing",
+      "target": "cumulative_effect",
+      "relation": "contains",
+      "context": "Remote Sensing contains Cumulative Effect"
+    },
+    {
+      "key": "road_extraction->remote_sensing:uses",
+      "source": "road_extraction",
+      "target": "remote_sensing",
+      "relation": "uses",
+      "context": "Road extraction relies on remote sensing techniques for data collection and analysis."
+    },
+    {
+      "key": "road_extraction->digital_processing:uses",
+      "source": "road_extraction",
+      "target": "digital_processing",
+      "relation": "uses",
+      "context": "Digital processing techniques are applied to satellite images for road extraction."
+    },
+    {
+      "key": "road_extraction->visual_interpretation:uses",
+      "source": "road_extraction",
+      "target": "visual_interpretation",
+      "relation": "uses",
+      "context": "Visual interpretation is used to manually identify road features in satellite images."
+    },
+    {
+      "key": "road_extraction->landsat_5:uses",
+      "source": "road_extraction",
+      "target": "landsat_5",
+      "relation": "uses",
+      "context": "Landsat 5 imagery is used for detecting changes in road networks over time."
+    },
+    {
+      "key": "road_extraction->landsat_8:uses",
+      "source": "road_extraction",
+      "target": "landsat_8",
+      "relation": "uses",
+      "context": "Landsat 8 imagery is used for detecting linear features through spatial enhancement."
+    },
+    {
+      "key": "road_extraction->spotmaps:uses",
+      "source": "road_extraction",
+      "target": "spotmaps",
+      "relation": "uses",
+      "context": "SPOTmaps products are used for semi-automatic road network extraction."
+    },
+    {
+      "key": "road_extraction->quickbird:uses",
+      "source": "road_extraction",
+      "target": "quickbird",
+      "relation": "uses",
+      "context": "QuickBird imagery is used for object-oriented road extraction."
+    },
+    {
+      "key": "aikaterini_karagianni->aristotle_university_of_thessaloniki:affiliated_with",
+      "source": "aikaterini_karagianni",
+      "target": "aristotle_university_of_thessaloniki",
+      "relation": "affiliated_with",
+      "context": "Karagianni is a researcher at the Aristotle University of Thessaloniki."
+    },
+    {
+      "key": "international_journal_of_engineering_and_geosciences->aikaterini_karagianni:publishes",
+      "source": "international_journal_of_engineering_and_geosciences",
+      "target": "aikaterini_karagianni",
+      "relation": "publishes",
+      "context": "The journal published Karagianni's research article."
+    },
+    {
+      "key": "u.s._geological_survey_(usgs)->landsat_5:provides_data_for",
+      "source": "u.s._geological_survey_(usgs)",
+      "target": "landsat_5",
+      "relation": "provides_data_for",
+      "context": "USGS provides Landsat 5 imagery data."
+    },
+    {
+      "key": "u.s._geological_survey_(usgs)->landsat_8:provides_data_for",
+      "source": "u.s._geological_survey_(usgs)",
+      "target": "landsat_8",
+      "relation": "provides_data_for",
+      "context": "USGS provides Landsat 8 imagery data."
+    },
+    {
+      "key": "digitalglobe->quickbird:provides_data_for",
+      "source": "digitalglobe",
+      "target": "quickbird",
+      "relation": "provides_data_for",
+      "context": "DigitalGlobe provides QuickBird satellite imagery."
+    },
+    {
+      "key": "kastoria->lake_orestiada:surrounds",
+      "source": "kastoria",
+      "target": "lake_orestiada",
+      "relation": "surrounds",
+      "context": "Kastoria city surrounds Lake Orestiada."
+    },
+    {
+      "key": "kastoria->natura_2000:part_of",
+      "source": "kastoria",
+      "target": "natura_2000",
+      "relation": "part_of",
+      "context": "Kastoria's lake is included in the Natura 2000 network."
+    },
+    {
+      "key": "road_extraction->great_work:enables",
+      "source": "road_extraction",
+      "target": "great_work",
+      "relation": "enables",
+      "context": "Road extraction techniques enable the creation of detailed road network maps."
+    },
+    {
+      "key": "digital_processing->consistency:requires",
+      "source": "digital_processing",
+      "target": "consistency",
+      "relation": "requires",
+      "context": "Digital processing requires consistent techniques for reliable results."
+    },
+    {
+      "key": "digital_processing->cumulative_effect:contributes_to",
+      "source": "digital_processing",
+      "target": "cumulative_effect",
+      "relation": "contributes_to",
+      "context": "Combining multiple data sources and techniques contributes to the cumulative effect in road extraction."
+    },
+    {
+      "key": "change_detection->landsat_5:uses",
+      "source": "change_detection",
+      "target": "landsat_5",
+      "relation": "uses",
+      "context": "Change detection uses Landsat 5 imagery to identify changes over time."
+    },
+    {
+      "key": "semi-automatic_techniques->spotmaps:applied_to",
+      "source": "semi-automatic_techniques",
+      "target": "spotmaps",
+      "relation": "applied_to",
+      "context": "Semi-automatic techniques are applied to SPOTmaps products for road extraction."
+    },
+    {
+      "key": "object-oriented_approach->quickbird:applied_to",
+      "source": "object-oriented_approach",
+      "target": "quickbird",
+      "relation": "applied_to",
+      "context": "Object-oriented approach is applied to QuickBird imagery for road extraction."
+    }
+  ],
+  "sources": [
+    "GQNtamkWQAALpFn.jpg",
+    "10.26833-ijeg.977032-1902027.pdf"
+  ]
+}

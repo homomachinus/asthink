@@ -7,7 +7,8 @@ import streamlit as st
 from ..config import OCR_MODEL, SUPPORTED_FORMATS
 from ..entities import extract_entities
 from ..graph_store import get_existing_topics, load_graph, merge_entities, save_graph
-from ..ocr import extract_pdf_text, ocr_from_url, ocr_image, render_pdf_pages
+from ..ocr import extract_pdf_text, ocr_from_url, ocr_image, ocr_pdf, render_pdf_pages
+from ..vector_store import add_texts_to_index
 
 def render_ingest_tab(mistral_key_manager, router_cfg, router_model):
     st.markdown("### Upload Documents")
@@ -71,22 +72,32 @@ def render_ingest_tab(mistral_key_manager, router_cfg, router_model):
                 if pdf_text and len(pdf_text.strip()) > 50:
                     ocr_results.append({"success":True,"text":pdf_text,"source":uf.name,"method":"pdf_text","elapsed":0,"usage":{},"model":"PyMuPDF"})
                 else:
-                    with st.spinner("Rendering pages for OCR..."):
-                        pages = render_pdf_pages(raw)
-                    if not pages:
-                        ocr_results.append({"success":False,"error":"Cannot read PDF","text":"","source":uf.name,"elapsed":0})
+                    with st.spinner("OCR PDF with Mistral..."):
+                        direct_pdf = ocr_pdf(mistral_key_manager, raw, uf.name)
+                    if direct_pdf.get("success") and direct_pdf.get("text", "").strip():
+                        ocr_results.append(direct_pdf)
                     else:
-                        combined = []
-                        tu = {"prompt_tokens":0,"completion_tokens":0,"total_tokens":0}
-                        tt = 0
-                        for pi, pg in enumerate(pages):
-                            with st.spinner("OCR page "+str(pi+1)+"/"+str(len(pages))):
-                                pr = ocr_image(mistral_key_manager, pg, "page_"+str(pi+1)+".png")
-                            if pr["success"]:
-                                combined.append(pr["text"])
-                                for k in tu: tu[k] += pr.get("usage",{}).get(k,0)
-                                tt += pr.get("elapsed",0)
-                        ocr_results.append({"success":len(combined)>0,"text":"\n\n--- Page Break ---\n\n".join(combined),"source":uf.name,"method":"pdf_ocr","elapsed":round(tt,2),"usage":tu,"model":OCR_MODEL})
+                        with st.spinner("Rendering pages for OCR fallback..."):
+                            pages = render_pdf_pages(raw)
+                        if not pages:
+                            ocr_results.append({"success":False,"error":"Cannot read PDF locally and Mistral PDF OCR failed: "+direct_pdf.get("error", "Unknown error"),"text":"","source":uf.name,"elapsed":0,"fallback_errors":direct_pdf.get("fallback_errors", [])})
+                        else:
+                            combined = []
+                            tu = {"prompt_tokens":0,"completion_tokens":0,"total_tokens":0}
+                            tt = 0
+                            page_errors = []
+                            if direct_pdf.get("error"):
+                                page_errors.append("direct PDF OCR: "+direct_pdf.get("error", "Unknown error"))
+                            for pi, pg in enumerate(pages):
+                                with st.spinner("OCR page "+str(pi+1)+"/"+str(len(pages))):
+                                    pr = ocr_image(mistral_key_manager, pg, "page_"+str(pi+1)+".png")
+                                if pr["success"] and pr.get("text", "").strip():
+                                    combined.append(pr["text"])
+                                    for k in tu: tu[k] += pr.get("usage",{}).get(k,0)
+                                    tt += pr.get("elapsed",0)
+                                else:
+                                    page_errors.append("page "+str(pi+1)+": "+pr.get("error", "No text returned"))
+                            ocr_results.append({"success":len(combined)>0,"text":"\n\n--- Page Break ---\n\n".join(combined),"source":uf.name,"method":"pdf_ocr","elapsed":round(tt,2),"usage":tu,"model":OCR_MODEL,"error":" | ".join(page_errors) if page_errors else ""})
             else:
                 with st.spinner("OCR on "+uf.name+"..."):
                     r = ocr_image(mistral_key_manager, raw, uf.name)
@@ -102,7 +113,22 @@ def render_ingest_tab(mistral_key_manager, router_cfg, router_model):
     
     if not successful_ocr:
         st.warning("No text extracted. Nothing to process.")
+        failed_ocr = [r for r in ocr_results if not r.get("success") or not r.get("text", "").strip()]
+        if failed_ocr:
+            st.markdown("#### OCR details")
+            for r in failed_ocr:
+                source = r.get("source", "Unknown source")
+                error = r.get("error") or "OCR returned empty text. Try a clearer image/PDF or check Mistral model/key access."
+                st.error(source+": "+error)
+                if r.get("fallback_errors"):
+                    with st.expander("Key fallback errors for "+source):
+                        for err in r.get("fallback_errors", []):
+                            st.caption(err)
         return
+    
+    indexed_count = add_texts_to_index(successful_ocr)
+    if indexed_count:
+        st.caption("Added "+str(indexed_count)+" searchable memory chunk(s).")
     
     graph = load_graph()
     existing_topics = get_existing_topics(graph)
@@ -191,5 +217,10 @@ def render_ingest_tab(mistral_key_manager, router_cfg, router_model):
         with c2:
             export_data = {"date":datetime.now().isoformat(),"extractions":[{"source":er.get("source"),"entities":er.get("entities"),"elapsed":er.get("elapsed")} for er in extraction_results if er.get("success")],"graph":graph}
             st.download_button("Download Full Export", data=json.dumps(export_data,indent=2,ensure_ascii=False), file_name="brain_export_"+ts+".json", mime="application/json", use_container_width=True)
+
+
+
+
+
 
 

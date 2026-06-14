@@ -1,13 +1,16 @@
 import json
 
 import requests
-def build_graph_html(graph, height=650):
+def build_graph_html(graph, height=650, dark_mode=False):
     try:
         from pyvis.network import Network
     except ImportError:
         return None
     
-    net = Network(height=str(height)+"px", width="100%", bgcolor="#ffffff", font_color="#333333", directed=True)
+    graph_bg = "#0f1117" if dark_mode else "#ffffff"
+    graph_font = "#f4f4f5" if dark_mode else "#333333"
+    edge_color = "#6b7280" if dark_mode else "#cccccc"
+    net = Network(height=str(height)+"px", width="100%", bgcolor=graph_bg, font_color=graph_font, directed=True)
     net.barnes_hut(gravity=-3000, central_gravity=0.3, spring_length=150, spring_strength=0.05, damping=0.09)
     
     nodes = graph.get("nodes",{})
@@ -80,7 +83,7 @@ def build_graph_html(graph, height=650):
             title += '<br><br>' + desc
         
         node["_chatgpt_url"] = chatgpt_url
-        net.add_node(nid, label=label, title=title, color=st["color"], size=st["size"], shape=st["shape"], font={"size":14 if ntype=="main_topic" else 11})
+        net.add_node(nid, label=label, title=title, color=st["color"], size=st["size"], shape=st["shape"], font={"size":14 if ntype=="main_topic" else 11,"color":graph_font})
     
     # buat edges
     for edge in edges:
@@ -89,11 +92,15 @@ def build_graph_html(graph, height=650):
         rel = edge.get("relation","")
         ctx = edge.get("context","")
         if s in nodes and t in nodes:
-            net.add_edge(s, t, title=rel+(": "+ctx if ctx else ""), label=rel, font={"size":8,"align":"middle"}, color={"color":"#cccccc","highlight":"#667eea"}, arrows={"to":{"enabled":True,"scaleFactor":0.5}})
+            net.add_edge(s, t, title=rel+(": "+ctx if ctx else ""), label=rel, font={"size":8,"align":"middle","color":graph_font,"strokeWidth":0}, color={"color":edge_color,"highlight":"#667eea"}, arrows={"to":{"enabled":True,"scaleFactor":0.5}})
     
     net.set_options('{"physics":{"barnesHut":{"gravitationalConstant":-3000,"centralGravity":0.3,"springLength":150,"springConstant":0.05,"damping":0.09},"minVelocity":0.75},"interaction":{"hover":true,"tooltipDelay":200,"navigationButtons":true,"keyboard":true}}')
     
     html = net.generate_html()
+    html = html.replace("background-color: #ffffff;", "background-color: "+graph_bg+";")
+    html = html.replace("background: #ffffff;", "background: "+graph_bg+";")
+    graph_style = "<style>html,body,#mynetwork,.vis-network{background:"+graph_bg+" !important;color:"+graph_font+" !important;} .vis-label,.vis-network text{fill:"+graph_font+" !important;color:"+graph_font+" !important;}</style>"
+    html = html.replace("</head>", graph_style + "</head>")
     
     # inject custom tooltip dengan tombol delete node
     node_info = {}

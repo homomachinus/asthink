@@ -451,13 +451,14 @@
       "id": "convolutional_neural_network_(cnn)",
       "label": "Convolutional Neural Network (CNN)",
       "type": "entity",
-      "description": "Deep learning technique used for road network extraction.",
+      "description": "Deep learning model used for image classification and segmentation.",
       "parent_topic": "Digital Image Processing",
       "sources": [
-        "10.26833-ijeg.977032-1902027.pdf"
+        "10.26833-ijeg.977032-1902027.pdf",
+        "mahersatillah2020.pdf"
       ],
       "created_at": "2026-06-14T13:01:24.725561",
-      "updated_at": "2026-06-14T13:01:24.725561"
+      "updated_at": "2026-06-14T22:40:39.498895"
     },
     "satellite_imagery": {
       "id": "satellite_imagery",
@@ -470,6 +471,366 @@
       ],
       "created_at": "2026-06-14T13:01:24.725561",
       "updated_at": "2026-06-14T13:01:24.725561"
+    },
+    "autonomous_vehicles": {
+      "id": "autonomous_vehicles",
+      "label": "Autonomous Vehicles",
+      "type": "main_topic",
+      "description": "Technology and systems enabling vehicles to operate without human intervention.",
+      "parent_topic": "",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "computer_vision": {
+      "id": "computer_vision",
+      "label": "Computer Vision",
+      "type": "main_topic",
+      "description": "Field of artificial intelligence focused on enabling computers to interpret and make decisions based on visual input.",
+      "parent_topic": "",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "road_detection": {
+      "id": "road_detection",
+      "label": "Road Detection",
+      "type": "main_topic",
+      "description": "Process of identifying and delineating road boundaries for navigation and safety.",
+      "parent_topic": "",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "semantic_segmentation": {
+      "id": "semantic_segmentation",
+      "label": "Semantic Segmentation",
+      "type": "main_topic",
+      "description": "Image processing technique that classifies each pixel in an image into a predefined class.",
+      "parent_topic": "",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "hsv_color_space_segmentation": {
+      "id": "hsv_color_space_segmentation",
+      "label": "HSV Color Space Segmentation",
+      "type": "subtopic",
+      "description": "Method of segmenting images based on Hue, Saturation, and Value color components.",
+      "parent_topic": "Computer Vision",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "hough_transform": {
+      "id": "hough_transform",
+      "label": "Hough Transform",
+      "type": "subtopic",
+      "description": "Image processing technique for detecting lines and curves.",
+      "parent_topic": "Computer Vision",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "edge_detection": {
+      "id": "edge_detection",
+      "label": "Edge Detection",
+      "type": "subtopic",
+      "description": "Process of identifying boundaries within images.",
+      "parent_topic": "Computer Vision",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "steering_assist_systems": {
+      "id": "steering_assist_systems",
+      "label": "Steering Assist Systems",
+      "type": "subtopic",
+      "description": "Systems that assist or automate vehicle steering based on road detection.",
+      "parent_topic": "Autonomous Vehicles",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "unstructured_roads": {
+      "id": "unstructured_roads",
+      "label": "Unstructured Roads",
+      "type": "subtopic",
+      "description": "Roads without clear markings or borders, requiring advanced detection methods.",
+      "parent_topic": "Road Detection",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "semantic_segmentation_models": {
+      "id": "semantic_segmentation_models",
+      "label": "Semantic Segmentation Models",
+      "type": "subtopic",
+      "description": "Pre-trained models used for classifying pixels in images.",
+      "parent_topic": "Semantic Segmentation",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "data_acquisition": {
+      "id": "data_acquisition",
+      "label": "Data Acquisition",
+      "type": "subtopic",
+      "description": "Process of collecting real-world data for training and testing autonomous systems.",
+      "parent_topic": "Autonomous Vehicles",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "isriti_2020": {
+      "id": "isriti_2020",
+      "label": "ISRITI 2020",
+      "type": "entity",
+      "description": "3rd International Seminar on Research of Information Technology and Intelligent Systems held in 2020.",
+      "parent_topic": "Autonomous Vehicles",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "a.a._mahersatillah": {
+      "id": "a.a._mahersatillah",
+      "label": "A.A. Mahersatillah",
+      "type": "entity",
+      "description": "First author of the paper on unstructured road detection using HSV color space segmentation.",
+      "parent_topic": "Autonomous Vehicles",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "z._zainuddin": {
+      "id": "z._zainuddin",
+      "label": "Z. Zainuddin",
+      "type": "entity",
+      "description": "Second author of the paper, affiliated with Hasanuddin University's Department of Informatics Engineering.",
+      "parent_topic": "Computer Vision",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "y._yusran": {
+      "id": "y._yusran",
+      "label": "Y. Yusran",
+      "type": "entity",
+      "description": "Third author of the paper, affiliated with Hasanuddin University's Department of Electrical Engineering.",
+      "parent_topic": "Autonomous Vehicles",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "hasanuddin_university": {
+      "id": "hasanuddin_university",
+      "label": "Hasanuddin University",
+      "type": "entity",
+      "description": "University in Makassar, Indonesia, where the authors are affiliated.",
+      "parent_topic": "Autonomous Vehicles",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "hsv_color_space": {
+      "id": "hsv_color_space",
+      "label": "HSV Color Space",
+      "type": "entity",
+      "description": "Color model representing colors in terms of Hue, Saturation, and Value.",
+      "parent_topic": "HSV Color Space Segmentation",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "canny_edge_detector": {
+      "id": "canny_edge_detector",
+      "label": "Canny Edge Detector",
+      "type": "entity",
+      "description": "Algorithm for detecting edges in images by finding intensity gradients.",
+      "parent_topic": "Edge Detection",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "ade20k": {
+      "id": "ade20k",
+      "label": "ADE20K",
+      "type": "entity",
+      "description": "Pre-trained model used for semantic segmentation with 3,169 annotated classes.",
+      "parent_topic": "Semantic Segmentation Models",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "opencv": {
+      "id": "opencv",
+      "label": "OpenCV",
+      "type": "entity",
+      "description": "Open-source library for computer vision and image processing.",
+      "parent_topic": "Computer Vision",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "autonomous_car": {
+      "id": "autonomous_car",
+      "label": "Autonomous Car",
+      "type": "entity",
+      "description": "Vehicle capable of sensing its environment and operating without human input.",
+      "parent_topic": "Autonomous Vehicles",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "steering_assist": {
+      "id": "steering_assist",
+      "label": "Steering Assist",
+      "type": "entity",
+      "description": "System that helps or automates vehicle steering based on road detection.",
+      "parent_topic": "Steering Assist Systems",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "unstructured_road": {
+      "id": "unstructured_road",
+      "label": "Unstructured Road",
+      "type": "entity",
+      "description": "Road without clear markings or borders, requiring advanced detection methods.",
+      "parent_topic": "Unstructured Roads",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "structured_road": {
+      "id": "structured_road",
+      "label": "Structured Road",
+      "type": "entity",
+      "description": "Road with clear markings or borders, easier to detect.",
+      "parent_topic": "Road Detection",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "gowa_regency": {
+      "id": "gowa_regency",
+      "label": "Gowa Regency",
+      "type": "entity",
+      "description": "Location in South Sulawesi, Indonesia, where road data was collected.",
+      "parent_topic": "Data Acquisition",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "south_sulawesi": {
+      "id": "south_sulawesi",
+      "label": "South Sulawesi",
+      "type": "entity",
+      "description": "Province in Indonesia where Gowa Regency is located.",
+      "parent_topic": "Data Acquisition",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "webcam": {
+      "id": "webcam",
+      "label": "Webcam",
+      "type": "entity",
+      "description": "Camera used for capturing road images in the study.",
+      "parent_topic": "Data Acquisition",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "canny_edge_detection": {
+      "id": "canny_edge_detection",
+      "label": "Canny edge detection",
+      "type": "tag",
+      "description": "",
+      "parent_topic": "",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "deep_learning": {
+      "id": "deep_learning",
+      "label": "deep learning",
+      "type": "tag",
+      "description": "",
+      "parent_topic": "",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
+    },
+    "image_processing": {
+      "id": "image_processing",
+      "label": "image processing",
+      "type": "tag",
+      "description": "",
+      "parent_topic": "",
+      "sources": [
+        "mahersatillah2020.pdf"
+      ],
+      "created_at": "2026-06-14T22:40:39.498895",
+      "updated_at": "2026-06-14T22:40:39.498895"
     }
   },
   "edges": [
@@ -934,10 +1295,298 @@
       "target": "quickbird",
       "relation": "applied_to",
       "context": "Object-oriented approach is applied to QuickBird imagery for road extraction."
+    },
+    {
+      "key": "computer_vision->hsv_color_space_segmentation:subtopic_of",
+      "source": "computer_vision",
+      "target": "hsv_color_space_segmentation",
+      "relation": "subtopic_of",
+      "context": "HSV Color Space Segmentation is subtopic of Computer Vision"
+    },
+    {
+      "key": "computer_vision->hough_transform:subtopic_of",
+      "source": "computer_vision",
+      "target": "hough_transform",
+      "relation": "subtopic_of",
+      "context": "Hough Transform is subtopic of Computer Vision"
+    },
+    {
+      "key": "computer_vision->edge_detection:subtopic_of",
+      "source": "computer_vision",
+      "target": "edge_detection",
+      "relation": "subtopic_of",
+      "context": "Edge Detection is subtopic of Computer Vision"
+    },
+    {
+      "key": "autonomous_vehicles->steering_assist_systems:subtopic_of",
+      "source": "autonomous_vehicles",
+      "target": "steering_assist_systems",
+      "relation": "subtopic_of",
+      "context": "Steering Assist Systems is subtopic of Autonomous Vehicles"
+    },
+    {
+      "key": "road_detection->unstructured_roads:subtopic_of",
+      "source": "road_detection",
+      "target": "unstructured_roads",
+      "relation": "subtopic_of",
+      "context": "Unstructured Roads is subtopic of Road Detection"
+    },
+    {
+      "key": "semantic_segmentation->semantic_segmentation_models:subtopic_of",
+      "source": "semantic_segmentation",
+      "target": "semantic_segmentation_models",
+      "relation": "subtopic_of",
+      "context": "Semantic Segmentation Models is subtopic of Semantic Segmentation"
+    },
+    {
+      "key": "autonomous_vehicles->data_acquisition:subtopic_of",
+      "source": "autonomous_vehicles",
+      "target": "data_acquisition",
+      "relation": "subtopic_of",
+      "context": "Data Acquisition is subtopic of Autonomous Vehicles"
+    },
+    {
+      "key": "autonomous_vehicles->isriti_2020:contains",
+      "source": "autonomous_vehicles",
+      "target": "isriti_2020",
+      "relation": "contains",
+      "context": "Autonomous Vehicles contains ISRITI 2020"
+    },
+    {
+      "key": "autonomous_vehicles->a.a._mahersatillah:contains",
+      "source": "autonomous_vehicles",
+      "target": "a.a._mahersatillah",
+      "relation": "contains",
+      "context": "Autonomous Vehicles contains A.A. Mahersatillah"
+    },
+    {
+      "key": "computer_vision->z._zainuddin:contains",
+      "source": "computer_vision",
+      "target": "z._zainuddin",
+      "relation": "contains",
+      "context": "Computer Vision contains Z. Zainuddin"
+    },
+    {
+      "key": "autonomous_vehicles->y._yusran:contains",
+      "source": "autonomous_vehicles",
+      "target": "y._yusran",
+      "relation": "contains",
+      "context": "Autonomous Vehicles contains Y. Yusran"
+    },
+    {
+      "key": "autonomous_vehicles->hasanuddin_university:contains",
+      "source": "autonomous_vehicles",
+      "target": "hasanuddin_university",
+      "relation": "contains",
+      "context": "Autonomous Vehicles contains Hasanuddin University"
+    },
+    {
+      "key": "hsv_color_space_segmentation->hsv_color_space:contains",
+      "source": "hsv_color_space_segmentation",
+      "target": "hsv_color_space",
+      "relation": "contains",
+      "context": "HSV Color Space Segmentation contains HSV Color Space"
+    },
+    {
+      "key": "hough_transform->hough_transform:contains",
+      "source": "hough_transform",
+      "target": "hough_transform",
+      "relation": "contains",
+      "context": "Hough Transform contains Hough Transform"
+    },
+    {
+      "key": "edge_detection->canny_edge_detector:contains",
+      "source": "edge_detection",
+      "target": "canny_edge_detector",
+      "relation": "contains",
+      "context": "Edge Detection contains Canny Edge Detector"
+    },
+    {
+      "key": "semantic_segmentation->convolutional_neural_network_(cnn):contains",
+      "source": "semantic_segmentation",
+      "target": "convolutional_neural_network_(cnn)",
+      "relation": "contains",
+      "context": "Semantic Segmentation contains Convolutional Neural Network (CNN)"
+    },
+    {
+      "key": "semantic_segmentation_models->ade20k:contains",
+      "source": "semantic_segmentation_models",
+      "target": "ade20k",
+      "relation": "contains",
+      "context": "Semantic Segmentation Models contains ADE20K"
+    },
+    {
+      "key": "computer_vision->opencv:contains",
+      "source": "computer_vision",
+      "target": "opencv",
+      "relation": "contains",
+      "context": "Computer Vision contains OpenCV"
+    },
+    {
+      "key": "semantic_segmentation->semantic_segmentation:contains",
+      "source": "semantic_segmentation",
+      "target": "semantic_segmentation",
+      "relation": "contains",
+      "context": "Semantic Segmentation contains Semantic Segmentation"
+    },
+    {
+      "key": "autonomous_vehicles->autonomous_car:contains",
+      "source": "autonomous_vehicles",
+      "target": "autonomous_car",
+      "relation": "contains",
+      "context": "Autonomous Vehicles contains Autonomous Car"
+    },
+    {
+      "key": "steering_assist_systems->steering_assist:contains",
+      "source": "steering_assist_systems",
+      "target": "steering_assist",
+      "relation": "contains",
+      "context": "Steering Assist Systems contains Steering Assist"
+    },
+    {
+      "key": "unstructured_roads->unstructured_road:contains",
+      "source": "unstructured_roads",
+      "target": "unstructured_road",
+      "relation": "contains",
+      "context": "Unstructured Roads contains Unstructured Road"
+    },
+    {
+      "key": "road_detection->structured_road:contains",
+      "source": "road_detection",
+      "target": "structured_road",
+      "relation": "contains",
+      "context": "Road Detection contains Structured Road"
+    },
+    {
+      "key": "data_acquisition->gowa_regency:contains",
+      "source": "data_acquisition",
+      "target": "gowa_regency",
+      "relation": "contains",
+      "context": "Data Acquisition contains Gowa Regency"
+    },
+    {
+      "key": "data_acquisition->south_sulawesi:contains",
+      "source": "data_acquisition",
+      "target": "south_sulawesi",
+      "relation": "contains",
+      "context": "Data Acquisition contains South Sulawesi"
+    },
+    {
+      "key": "data_acquisition->webcam:contains",
+      "source": "data_acquisition",
+      "target": "webcam",
+      "relation": "contains",
+      "context": "Data Acquisition contains Webcam"
+    },
+    {
+      "key": "hsv_color_space->semantic_segmentation:used_in",
+      "source": "hsv_color_space",
+      "target": "semantic_segmentation",
+      "relation": "used_in",
+      "context": "HSV color space is used to segment road areas from non-road areas in semantic segmentation results."
+    },
+    {
+      "key": "hough_transform->edge_detection:enables",
+      "source": "hough_transform",
+      "target": "edge_detection",
+      "relation": "enables",
+      "context": "Hough Transform connects detected edge pixels to form solid lines representing road boundaries."
+    },
+    {
+      "key": "canny_edge_detector->edge_detection:used_in",
+      "source": "canny_edge_detector",
+      "target": "edge_detection",
+      "relation": "used_in",
+      "context": "Canny Edge Detector is used to detect edges in images for road boundary identification."
+    },
+    {
+      "key": "convolutional_neural_network_(cnn)->semantic_segmentation:used_in",
+      "source": "convolutional_neural_network_(cnn)",
+      "target": "semantic_segmentation",
+      "relation": "used_in",
+      "context": "CNN is used as a pre-trained model for semantic segmentation in the study."
+    },
+    {
+      "key": "ade20k->semantic_segmentation:used_in",
+      "source": "ade20k",
+      "target": "semantic_segmentation",
+      "relation": "used_in",
+      "context": "ADE20K model is used for semantic segmentation with 3,169 annotated classes."
+    },
+    {
+      "key": "opencv->hough_transform:provides",
+      "source": "opencv",
+      "target": "hough_transform",
+      "relation": "provides",
+      "context": "OpenCV's library provides cv2.HoughLinesP() for line detection using Hough Transform."
+    },
+    {
+      "key": "autonomous_car->steering_assist:requires",
+      "source": "autonomous_car",
+      "target": "steering_assist",
+      "relation": "requires",
+      "context": "Autonomous cars require steering assist systems to navigate roads safely."
+    },
+    {
+      "key": "unstructured_road->road_detection:challenges",
+      "source": "unstructured_road",
+      "target": "road_detection",
+      "relation": "challenges",
+      "context": "Unstructured roads pose challenges for road detection due to lack of clear markings."
+    },
+    {
+      "key": "structured_road->road_detection:simplifies",
+      "source": "structured_road",
+      "target": "road_detection",
+      "relation": "simplifies",
+      "context": "Structured roads simplify road detection due to clear markings and borders."
+    },
+    {
+      "key": "isriti_2020->autonomous_car:presents",
+      "source": "isriti_2020",
+      "target": "autonomous_car",
+      "relation": "presents",
+      "context": "ISRITI 2020 seminar presented research on unstructured road detection for autonomous cars."
+    },
+    {
+      "key": "a.a._mahersatillah->hasanuddin_university:affiliated_with",
+      "source": "a.a._mahersatillah",
+      "target": "hasanuddin_university",
+      "relation": "affiliated_with",
+      "context": "A.A. Mahersatillah is a postgraduate student at Hasanuddin University."
+    },
+    {
+      "key": "z._zainuddin->hasanuddin_university:affiliated_with",
+      "source": "z._zainuddin",
+      "target": "hasanuddin_university",
+      "relation": "affiliated_with",
+      "context": "Z. Zainuddin is affiliated with Hasanuddin University's Department of Informatics Engineering."
+    },
+    {
+      "key": "y._yusran->hasanuddin_university:affiliated_with",
+      "source": "y._yusran",
+      "target": "hasanuddin_university",
+      "relation": "affiliated_with",
+      "context": "Y. Yusran is affiliated with Hasanuddin University's Department of Electrical Engineering."
+    },
+    {
+      "key": "gowa_regency->data_acquisition:used_in",
+      "source": "gowa_regency",
+      "target": "data_acquisition",
+      "relation": "used_in",
+      "context": "Road data for the study was collected in Gowa Regency, South Sulawesi."
+    },
+    {
+      "key": "webcam->data_acquisition:used_in",
+      "source": "webcam",
+      "target": "data_acquisition",
+      "relation": "used_in",
+      "context": "A webcam was used to capture road images for the study."
     }
   ],
   "sources": [
     "GQNtamkWQAALpFn.jpg",
-    "10.26833-ijeg.977032-1902027.pdf"
+    "10.26833-ijeg.977032-1902027.pdf",
+    "mahersatillah2020.pdf"
   ]
 }

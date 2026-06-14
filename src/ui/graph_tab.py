@@ -4,6 +4,7 @@ import streamlit.components.v1 as components
 
 from ..graph_store import load_graph, save_graph
 from ..graph_viz import build_chatgpt_prompt, build_graph_html
+from .prefs import is_dark_mode, safe_rerun
 def handle_node_deletion(nid):
     graph = load_graph()
     nodes = graph.get("nodes", {})
@@ -42,7 +43,7 @@ def render_graph_tab():
         nid = st.session_state.pop("_delete_node_request")
         count = handle_node_deletion(nid)
         st.success(f"Deleted {count} node(s) and their connections.")
-        st.rerun()
+        safe_rerun()
     
     graph = load_graph()
     nodes = graph.get("nodes",{})
@@ -56,7 +57,7 @@ def render_graph_tab():
     st.caption(str(len(nodes))+" nodes | "+str(len(edges))+" edges | "+str(len(graph.get("sources",[])))+" sources")
     
     # visualization
-    html = build_graph_html(graph, height=650)
+    html = build_graph_html(graph, height=650, dark_mode=is_dark_mode())
     if html:
         components.html(html, height=670, scrolling=True)
     else:
@@ -127,5 +128,5 @@ def render_graph_tab():
         if st.button("Confirm Reset"):
             save_graph({"nodes":{},"edges":[],"sources":[]})
             st.success("Knowledge graph has been reset.")
-            st.rerun()
+            safe_rerun()
 

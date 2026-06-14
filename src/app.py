@@ -2,13 +2,16 @@ import streamlit as st
 
 from .config import KEY_FILE, get_mistral_config, get_router_config, load_keys
 from .key_manager import MistralKeyManager
+from .ui.chat_tab import render_chat_tab
 from .ui.graph_tab import render_graph_tab
 from .ui.ingest import render_ingest_tab
+from .ui.prefs import apply_theme
 from .ui.sidebar import render_sidebar
 
 
 def configure_page():
     st.set_page_config(page_title="Second Brain", page_icon="S", layout="wide", initial_sidebar_state="expanded")
+    apply_theme()
     st.markdown("""
 <style>
     .main-header { font-size: 2.4rem; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.1rem; }
@@ -55,10 +58,15 @@ def main():
         return
     key_manager = MistralKeyManager(mc)
 
-    tab_ingest, tab_graph = st.tabs(["Ingest", "Knowledge Graph"])
+    tab_ingest, tab_graph, tab_chat = st.tabs(["Ingest", "Knowledge Graph", "Chat With Brain"])
 
     with tab_ingest:
         render_ingest_tab(key_manager, rc, rm)
 
     with tab_graph:
         render_graph_tab()
+    
+    with tab_chat:
+        render_chat_tab(rc, rm)
+
+

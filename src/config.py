@@ -4,8 +4,9 @@ import streamlit as st
 
 KEY_FILE = "key.json"
 GRAPH_FILE = "knowledge_graph.json"
-OCR_ENDPOINT = "https://api.mistral.ai/v1/chat/completions"
-OCR_MODEL = "pixtral-12b-2409"
+VECTOR_FILE = "output/brain_vector_index.json"
+OCR_ENDPOINT = "https://api.mistral.ai/v1/ocr"
+OCR_MODEL = "mistral-ocr-latest"
 MAX_TOKENS = 4096
 SUPPORTED_FORMATS = ["jpg", "jpeg", "png", "bmp", "tiff", "tif", "webp", "gif", "pdf"]
 OUTPUT_DIR = Path("output")
@@ -46,4 +47,8 @@ def get_mime(f):
     e = Path(f).suffix.lower()
     m = {".jpg":"image/jpeg",".jpeg":"image/jpeg",".png":"image/png",".bmp":"image/bmp",".tiff":"image/tiff",".tif":"image/tiff",".webp":"image/webp",".gif":"image/gif",".pdf":"application/pdf"}
     return m.get(e, "image/jpeg")
+
+
+
+
 

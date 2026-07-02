@@ -589,4 +589,4 @@ $content = Get-Content file.txt -Raw
 
 ## License
 
-Personal project. Use it however you want.
+Personal project. Use it however you want. xoxos
